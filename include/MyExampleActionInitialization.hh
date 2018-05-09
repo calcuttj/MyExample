@@ -6,6 +6,12 @@
 #include "TTree.h"
 #include "TFile.h"
 
+struct TreeBuffer{
+  std::vector<int> * tid;
+  std::vector<int> * pid;
+  int fEvent;
+};
+
 class MyExampleActionInitialization : public G4VUserActionInitialization{
 
   public:
@@ -17,8 +23,10 @@ class MyExampleActionInitialization : public G4VUserActionInitialization{
     TFile * fout;
     TTree * tree;
 
-    std::vector<int> tid;
-    std::vector<int> pid;
-    int fEvent;
+/*    std::vector<int> * tid;
+    std::vector<int> * pid;
+    int fEvent;*/
+
+    TreeBuffer MyTreeBuffer;
 };
 #endif

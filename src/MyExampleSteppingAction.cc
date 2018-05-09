@@ -2,29 +2,24 @@
 #include "G4UImanager.hh"
 #include "G4Track.hh"
 
-MyExampleSteppingAction::MyExampleSteppingAction() : G4UserSteppingAction(){
-  G4cout << "Initializing stepping action" << G4endl;
-//  fout.open("try.txt");
-//  fout << "Steps IDs\n";
+MyExampleSteppingAction::MyExampleSteppingAction(std::vector<int> * tid, std::vector<int> * pid) : G4UserSteppingAction(){
 
-/*  //Initialize TFile and TTree for output
-  fout = new TFile("out.root", "RECREATE");
-  tree = new TTree("tree",""); 
-  
-  tree->Branch("pid", &pid);
-  tree->Branch("tid", &tid);*/
+  tid_copy = tid;
+  pid_copy = pid;
+
+  G4cout << "Initializing stepping action" << G4endl;
+
+  G4cout << "Got tid vector at " << tid_copy <<
+  "\nGot pid vector at " << pid_copy << G4endl;
+
 }
 
 MyExampleSteppingAction::~MyExampleSteppingAction(){
- // fout.close();
-//  fout->Close();
 }
 
 void MyExampleSteppingAction::UserSteppingAction(const G4Step * step){
   G4Track * track = step->GetTrack();
   
-//  fout << "Track ID: " << track->GetTrackID() << "\n";
-//  std::cout << "Track ID: " << track->GetTrackID() << std::endl;
-//  tid.push_back(track->GetTrackID());
-//  pid.push_back(track->GetDefinition()->GetPDGEncoding());
+  tid_copy->push_back(track->GetTrackID());
+  pid_copy->push_back(track->GetDefinition()->GetPDGEncoding());
 }
