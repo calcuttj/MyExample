@@ -11,6 +11,10 @@ MyExampleActionInitialization::MyExampleActionInitialization() : G4VUserActionIn
   tree->Branch("pid", &MyTreeBuffer.pid);
   tree->Branch("tid", &MyTreeBuffer.tid);
   tree->Branch("fEvent", &MyTreeBuffer.fEvent);
+  tree->Branch("xi", &MyTreeBuffer.xi);
+  tree->Branch("yi", &MyTreeBuffer.yi);
+  tree->Branch("zi", &MyTreeBuffer.zi);
+  tree->Branch("primaryPDGs", &MyTreeBuffer.primaryPDGs);
 }
 
 MyExampleActionInitialization::~MyExampleActionInitialization(){

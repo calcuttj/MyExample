@@ -8,9 +8,6 @@ MyExampleSteppingAction::MyExampleSteppingAction(TreeBuffer inputTreeBuffer) : G
 
   G4cout << "Initializing stepping action" << G4endl;
 
-  G4cout << "Got tid vector at " << tid_copy <<
-  "\nGot pid vector at " << pid_copy << G4endl;
-
 }
 
 MyExampleSteppingAction::~MyExampleSteppingAction(){

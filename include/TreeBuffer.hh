@@ -6,7 +6,10 @@
 struct TreeBuffer{
   std::vector<int> * tid;
   std::vector<int> * pid;
+  std::vector<int> * primaryPDGs;
   int fEvent;
+
+  double xi, yi, zi;
 };
 
 #endif
