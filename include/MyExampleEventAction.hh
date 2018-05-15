@@ -3,6 +3,7 @@
 
 #include "G4UserEventAction.hh"
 #include "G4EventManager.hh"
+#include "TreeBuffer.hh"
 
 #include "TTree.h"
 #include <vector>
@@ -10,7 +11,7 @@
 class MyExampleEventAction : public G4UserEventAction{
 
   public:
-    MyExampleEventAction(TTree *, std::vector<int> *, std::vector<int> *);
+    MyExampleEventAction(TTree *, TreeBuffer);
     virtual ~MyExampleEventAction();
 
     virtual void BeginOfEventAction(const G4Event *);
@@ -20,8 +21,7 @@ class MyExampleEventAction : public G4UserEventAction{
 
   private: 
     TTree * tree_copy;
-    std::vector<int> * tid_copy;
-    std::vector<int> * pid_copy;
+    TreeBuffer MyTreeBuffer;
 };
 
 #endif

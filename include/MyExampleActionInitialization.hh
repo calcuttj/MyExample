@@ -2,15 +2,12 @@
 #define MyExampleActionInitialization_h 1
 
 #include "G4VUserActionInitialization.hh"
+#include "TreeBuffer.hh"
 
 #include "TTree.h"
 #include "TFile.h"
 
-struct TreeBuffer{
-  std::vector<int> * tid;
-  std::vector<int> * pid;
-  int fEvent;
-};
+
 
 class MyExampleActionInitialization : public G4VUserActionInitialization{
 
@@ -22,10 +19,6 @@ class MyExampleActionInitialization : public G4VUserActionInitialization{
 
     TFile * fout;
     TTree * tree;
-
-/*    std::vector<int> * tid;
-    std::vector<int> * pid;
-    int fEvent;*/
 
     TreeBuffer MyTreeBuffer;
 };

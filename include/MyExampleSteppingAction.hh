@@ -2,6 +2,7 @@
 #define MyExampleSteppingAction_h 1
 
 #include "G4UserSteppingAction.hh"
+#include "TreeBuffer.hh"
 
 #include <iostream>
 #include <fstream>
@@ -10,15 +11,12 @@
 class MyExampleSteppingAction : public G4UserSteppingAction{
 
   public:
-    MyExampleSteppingAction(std::vector<int>*, std::vector<int>*);
+    MyExampleSteppingAction(TreeBuffer);
     virtual ~MyExampleSteppingAction();
 
     virtual void UserSteppingAction(const G4Step*);  
-//    std::ofstream fout;
   private:
-    std::vector<int> * tid_copy;
-    std::vector<int> * pid_copy;
-
+    TreeBuffer MyTreeBuffer;
 };
 
 #endif

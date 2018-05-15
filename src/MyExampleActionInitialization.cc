@@ -22,6 +22,6 @@ void MyExampleActionInitialization::Build() const{
   SetUserAction(new MyExamplePrimaryGeneratorAction);
   //Pass trees and branches to these
   std::cout << "Passing tree at " << tree << std::endl;
-  SetUserAction(new MyExampleEventAction(tree, MyTreeBuffer.tid, MyTreeBuffer.pid));//Will have to fill tree in this
-  SetUserAction(new MyExampleSteppingAction(MyTreeBuffer.tid, MyTreeBuffer.pid));
+  SetUserAction(new MyExampleEventAction(tree, MyTreeBuffer));//Will have to fill tree in this
+  SetUserAction(new MyExampleSteppingAction(MyTreeBuffer));
 }
