@@ -15,6 +15,8 @@ MyExampleEventAction::~MyExampleEventAction(){
 void MyExampleEventAction::BeginOfEventAction(const G4Event * event){
   MyTreeBuffer.tid->clear();
   MyTreeBuffer.pid->clear();
+  MyTreeBuffer.track_tid->clear();
+  MyTreeBuffer.track_pid->clear();
   MyTreeBuffer.primaryPDGs->clear();
 }
 
@@ -36,5 +38,6 @@ void MyExampleEventAction::EndOfEventAction(const G4Event * event){
     MyTreeBuffer.primaryPDGs->push_back(part->GetPDGcode());
   }
 
+  G4cout << "track vec size" << MyTreeBuffer.track_tid->size() << G4endl; 
   tree_copy->Fill();
 }

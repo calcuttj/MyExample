@@ -26,7 +26,7 @@ int main(int argc, char ** argv){
   UI->ApplyCommand("/run/verbose 1");
   UI->ApplyCommand("/event/verbose 1");
 
-  int nEvents = 3;
+  int nEvents = 100;
   runManager->BeamOn(nEvents);  
 
   delete runManager;
