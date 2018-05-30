@@ -11,12 +11,12 @@
 class MyExampleSteppingAction : public G4UserSteppingAction{
 
   public:
-    MyExampleSteppingAction(TreeBuffer);
+    MyExampleSteppingAction(TreeBuffer *);
     virtual ~MyExampleSteppingAction();
 
     virtual void UserSteppingAction(const G4Step*);  
   private:
-    TreeBuffer MyTreeBuffer;
+    TreeBuffer * MyTreeBuffer;
 };
 
 #endif

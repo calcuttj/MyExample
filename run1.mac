@@ -1,0 +1,14 @@
+#
+# Macro file for MyExample
+#
+# set verbose level for this run
+#
+
+/run/verbose    1
+/event/verbose  1
+
+#
+# Set the initial kinematic and run 3 events
+#
+#
+/run/beamOn 3

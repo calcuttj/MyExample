@@ -11,13 +11,13 @@
 class MyExampleTrackingAction : public G4UserTrackingAction{
 
   public:
-    MyExampleTrackingAction(TreeBuffer);
+    MyExampleTrackingAction(TreeBuffer *);
     virtual ~MyExampleTrackingAction();
 
     virtual void PreUserTrackingAction(const G4Track *);  
     virtual void PostUserTrackingAction(const G4Track *);  
   private:
-    TreeBuffer MyTreeBuffer;
+    TreeBuffer * MyTreeBuffer;
 };
 
 #endif

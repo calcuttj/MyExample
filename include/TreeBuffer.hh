@@ -9,7 +9,7 @@ struct TreeBuffer{
   std::vector<int> * track_tid;
   std::vector<int> * track_pid;
   std::vector<int> * primaryPDGs;
-  int fEvent;
+  int   fEvent;
 
   double xi, yi, zi;
 };

@@ -7,17 +7,20 @@
 
 
 MyExampleActionInitialization::MyExampleActionInitialization() : G4VUserActionInitialization(){
+  MyTreeBuffer = new TreeBuffer();
   fout = new TFile("try.root", "RECREATE");
   tree = new TTree("tree","");
-  tree->Branch("pid", &MyTreeBuffer.pid);
-  tree->Branch("tid", &MyTreeBuffer.tid);
-  tree->Branch("track_pid", &MyTreeBuffer.track_pid);
-  tree->Branch("track_tid", &MyTreeBuffer.track_tid);
-  tree->Branch("fEvent", &MyTreeBuffer.fEvent);
-  tree->Branch("xi", &MyTreeBuffer.xi);
-  tree->Branch("yi", &MyTreeBuffer.yi);
-  tree->Branch("zi", &MyTreeBuffer.zi);
-  tree->Branch("primaryPDGs", &MyTreeBuffer.primaryPDGs);
+  G4cout << "Making Branches" << G4endl;
+  tree->Branch("pid", &MyTreeBuffer->pid);
+  tree->Branch("tid", &MyTreeBuffer->tid);
+  tree->Branch("track_pid", &MyTreeBuffer->track_pid);
+  tree->Branch("track_tid", &MyTreeBuffer->track_tid);
+  tree->Branch("fEvent", &MyTreeBuffer->fEvent);
+  tree->Branch("xi", &MyTreeBuffer->xi);
+  tree->Branch("yi", &MyTreeBuffer->yi);
+  tree->Branch("zi", &MyTreeBuffer->zi);
+  tree->Branch("primaryPDGs", &MyTreeBuffer->primaryPDGs);
+  G4cout << "Made Branches" << G4endl;
 }
 
 MyExampleActionInitialization::~MyExampleActionInitialization(){

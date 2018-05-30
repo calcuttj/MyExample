@@ -20,6 +20,6 @@ class MyExampleActionInitialization : public G4VUserActionInitialization{
     TFile * fout;
     TTree * tree;
 
-    TreeBuffer MyTreeBuffer;
+    TreeBuffer * MyTreeBuffer;
 };
 #endif

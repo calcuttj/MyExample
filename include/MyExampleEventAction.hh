@@ -12,7 +12,7 @@
 class MyExampleEventAction : public G4UserEventAction{
 
   public:
-    MyExampleEventAction(TTree *, TreeBuffer);
+    MyExampleEventAction(TTree *, TreeBuffer * );
     virtual ~MyExampleEventAction();
 
     virtual void BeginOfEventAction(const G4Event *);
@@ -22,7 +22,7 @@ class MyExampleEventAction : public G4UserEventAction{
 
   private: 
     TTree * tree_copy;
-    TreeBuffer MyTreeBuffer;
+    TreeBuffer * MyTreeBuffer;
 };
 
 #endif

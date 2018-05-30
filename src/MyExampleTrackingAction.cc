@@ -2,7 +2,7 @@
 #include "G4UImanager.hh"
 #include "G4Track.hh"
 
-MyExampleTrackingAction::MyExampleTrackingAction(TreeBuffer inputTreeBuffer) : G4UserTrackingAction(){
+MyExampleTrackingAction::MyExampleTrackingAction(TreeBuffer * inputTreeBuffer) : G4UserTrackingAction(){
 
   MyTreeBuffer = inputTreeBuffer;
 
@@ -16,8 +16,8 @@ MyExampleTrackingAction::~MyExampleTrackingAction(){
 void MyExampleTrackingAction::PreUserTrackingAction(const G4Track * track){
   int parID = track->GetParentID();
   if(parID == 0){    
-    MyTreeBuffer.track_tid->push_back(track->GetTrackID());
-    MyTreeBuffer.track_pid->push_back(track->GetDefinition()->GetPDGEncoding());
+    MyTreeBuffer->track_tid->push_back(track->GetTrackID());
+    MyTreeBuffer->track_pid->push_back(track->GetDefinition()->GetPDGEncoding());
   }
    
 }
