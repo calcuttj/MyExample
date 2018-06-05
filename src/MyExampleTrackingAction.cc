@@ -2,6 +2,7 @@
 #include "G4UImanager.hh"
 #include "G4Track.hh"
 #include "G4VProcess.hh"
+#include "G4String.hh"
 
 MyExampleTrackingAction::MyExampleTrackingAction(TreeBuffer * inputTreeBuffer) : G4UserTrackingAction(){
 
@@ -24,5 +25,7 @@ void MyExampleTrackingAction::PreUserTrackingAction(const G4Track * track){
 }
 
 void MyExampleTrackingAction::PostUserTrackingAction(const G4Track * track){  
-  //MyTreeBuffer->track_creator->push_back(track->GetCreatorProcess()->GetProcessName()); 
+  if(track->GetCreatorProcess()){
+    MyTreeBuffer->track_creator->push_back(track->GetCreatorProcess()->GetProcessName()); 
+  }
 }
