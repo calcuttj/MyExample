@@ -15,6 +15,7 @@ MyExampleActionInitialization::MyExampleActionInitialization() : G4VUserActionIn
   tree->Branch("tid", &MyTreeBuffer->tid);
   tree->Branch("track_pid", &MyTreeBuffer->track_pid);
   tree->Branch("track_tid", &MyTreeBuffer->track_tid);
+  tree->Branch("track_creator", &MyTreeBuffer->track_creator);
   tree->Branch("fEvent", &MyTreeBuffer->fEvent);
   tree->Branch("xi", &MyTreeBuffer->xi);
   tree->Branch("yi", &MyTreeBuffer->yi);
@@ -26,6 +27,8 @@ MyExampleActionInitialization::MyExampleActionInitialization() : G4VUserActionIn
   tree->Branch("xs", &MyTreeBuffer->xs);
   tree->Branch("ys", &MyTreeBuffer->ys);
   tree->Branch("zs", &MyTreeBuffer->zs);
+
+  tree->Branch("postProcess", &MyTreeBuffer->postStepProcess);
   G4cout << "Made Branches" << G4endl;
 }
 
