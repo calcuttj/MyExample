@@ -18,6 +18,12 @@ void MyExampleEventAction::BeginOfEventAction(const G4Event * event){
   MyTreeBuffer->track_tid->clear();
   MyTreeBuffer->track_pid->clear();
   MyTreeBuffer->primaryPDGs->clear();
+  MyTreeBuffer->parid->clear();
+  MyTreeBuffer->ekin->clear();
+  MyTreeBuffer->edep->clear();
+  MyTreeBuffer->xs->clear();
+  MyTreeBuffer->ys->clear();
+  MyTreeBuffer->zs->clear();
 }
 
 void MyExampleEventAction::EndOfEventAction(const G4Event * event){

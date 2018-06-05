@@ -28,15 +28,19 @@ G4VPhysicalVolume * MyExampleDetectorConstruction::Construct(){
 
   //World
   //
-  G4Box * solidWorld = new G4Box("World", 5*radius, 5*radius, 5*radius);
+  G4Box * solidWorld = new G4Box("World", 50*radius, 50*radius, 50*radius);
   G4LogicalVolume * logicWorld = new G4LogicalVolume(solidWorld, air, "World");
   G4VPhysicalVolume * physWorld = new G4PVPlacement(0, G4ThreeVector(), logicWorld, "World", 0, false, 0, checkOverlaps);
 
   //Disk
   //
-  G4Tubs * solidDisk = new G4Tubs("Disk", 0., radius, height, 0.*deg, 360.*deg);
-  G4LogicalVolume * logicDisk = new G4LogicalVolume(solidDisk, water, "Disk");
-  G4VPhysicalVolume * physDisk = new G4PVPlacement(0, G4ThreeVector(), logicDisk, "Disk", logicWorld, false, 0, checkOverlaps);
+  //G4Tubs * solidDisk = new G4Tubs("Disk", 0., radius, height, 0.*deg, 360.*deg);
+  //G4LogicalVolume * logicDisk = new G4LogicalVolume(solidDisk, water, "Disk");
+  //G4VPhysicalVolume * physDisk = new G4PVPlacement(0, G4ThreeVector(), logicDisk, "Disk", logicWorld, false, 0, checkOverlaps);
+
+  G4Box * solidCube = new G4Box("Box", 10*height, 10*height, 10*height);
+  G4LogicalVolume * logicCube = new G4LogicalVolume(solidCube, water, "Box");
+  G4VPhysicalVolume * physCube = new G4PVPlacement(0, G4ThreeVector(), logicCube, "Box", logicWorld, false, 0, checkOverlaps);
 
   return physWorld;
 

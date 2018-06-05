@@ -20,6 +20,12 @@ MyExampleActionInitialization::MyExampleActionInitialization() : G4VUserActionIn
   tree->Branch("yi", &MyTreeBuffer->yi);
   tree->Branch("zi", &MyTreeBuffer->zi);
   tree->Branch("primaryPDGs", &MyTreeBuffer->primaryPDGs);
+  tree->Branch("parid", &MyTreeBuffer->parid);
+  tree->Branch("ekin", &MyTreeBuffer->ekin);
+  tree->Branch("edep", &MyTreeBuffer->edep);
+  tree->Branch("xs", &MyTreeBuffer->xs);
+  tree->Branch("ys", &MyTreeBuffer->ys);
+  tree->Branch("zs", &MyTreeBuffer->zs);
   G4cout << "Made Branches" << G4endl;
 }
 
