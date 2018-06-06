@@ -9,8 +9,9 @@ struct TreeBuffer{
   std::vector<int> * pid;
   std::vector<int> * track_tid;
   std::vector<int> * track_pid;
-  std::vector<std::string> * track_creator;
+  std::vector<std::string> * track_creator;  
   std::vector<int> * primaryPDGs;
+  std::vector<double> * primaryEnergy;
   std::vector<int> * parid;
 
   std::vector<std::string> * postStepProcess;
@@ -18,9 +19,16 @@ struct TreeBuffer{
   std::vector<double> * edep;
   std::vector<double> * xs, * ys, * zs;
 
-  int   fEvent;
-
+  int fEvent;
+  
   double xi, yi, zi;
+
+  std::vector<int> * secondaryProductIDs;
+  std::vector<int> * secondaryProductPIDs;
+  std::string * secondaryProcess;
+  std::string * interactionMode;
+  int nPi0, nPiPlus, nPiMinus, nProton, nNeutron, nNuclear, nGamma;
+
 };
 
 #endif
