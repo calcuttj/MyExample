@@ -39,4 +39,20 @@ void MyExampleSteppingAction::UserSteppingAction(const G4Step * step){
   auto postPro = poststep->GetProcessDefinedStep(); 
   auto postProName = postPro->GetProcessName();
   MyTreeBuffer->postStepProcess->push_back(postProName); 
+
+  auto preMat = prestep->GetMaterial();
+  if(preMat){
+    MyTreeBuffer->preStepMat->push_back(preMat->GetName());
+  }
+  else{
+    MyTreeBuffer->preStepMat->push_back("NoMat");
+  }
+
+  auto postMat = poststep->GetMaterial();
+  if(postMat){
+    MyTreeBuffer->postStepMat->push_back(postMat->GetName());
+  }
+  else{
+    MyTreeBuffer->postStepMat->push_back("NoMat");
+  } 
 }

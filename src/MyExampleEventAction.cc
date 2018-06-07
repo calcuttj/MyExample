@@ -22,6 +22,7 @@ void MyExampleEventAction::BeginOfEventAction(const G4Event * event){
   MyTreeBuffer->secondaryProductIDs->clear();
   MyTreeBuffer->secondaryProductPIDs->clear();
   MyTreeBuffer->secondaryProcess->clear();
+
   MyTreeBuffer->interactionMode->clear();
 
   (MyTreeBuffer->nPi0) = 0;   
@@ -40,6 +41,8 @@ void MyExampleEventAction::BeginOfEventAction(const G4Event * event){
   MyTreeBuffer->xs->clear();
   MyTreeBuffer->ys->clear();
   MyTreeBuffer->zs->clear();
+  MyTreeBuffer->preStepMat->clear();
+  MyTreeBuffer->postStepMat->clear();
 
   MyTreeBuffer->postStepProcess->clear();
 }
@@ -136,6 +139,20 @@ void MyExampleEventAction::EndOfEventAction(const G4Event * event){
       }
       else{ 
         *(MyTreeBuffer->interactionMode) = "INEL";
+      }
+    }
+    else if(nPiMinus > 0){
+      if(nPi0 > 0){
+        *(MyTreeBuffer->interactionMode) = "Pi-+Pi0";
+      }
+      else if(nPiPlus > 0){
+        *(MyTreeBuffer->interactionMode) = "Pi-+Pi+";
+      }
+      else if(nPiMinus > 1){
+       *(MyTreeBuffer->interactionMode) = "DCEX N";
+      }
+      else{
+       *(MyTreeBuffer->interactionMode) = "DCEX";
       }
     }
     else if(nPi0 == 0 && nPiPlus == 0 && nPiMinus == 0){

@@ -15,6 +15,8 @@ struct TreeBuffer{
   std::vector<int> * parid;
 
   std::vector<std::string> * postStepProcess;
+  std::vector<std::string> * preStepMat;
+  std::vector<std::string> * postStepMat;
   std::vector<double> * ekin;
   std::vector<double> * edep;
   std::vector<double> * xs, * ys, * zs;
@@ -26,6 +28,7 @@ struct TreeBuffer{
   std::vector<int> * secondaryProductIDs;
   std::vector<int> * secondaryProductPIDs;
   std::string * secondaryProcess;
+  
   std::string * interactionMode;
   int nPi0, nPiPlus, nPiMinus, nProton, nNeutron, nNuclear, nGamma;
 

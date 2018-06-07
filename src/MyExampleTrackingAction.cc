@@ -20,11 +20,15 @@ void MyExampleTrackingAction::PreUserTrackingAction(const G4Track * track){
   MyTreeBuffer->track_tid->push_back(track->GetTrackID());
   MyTreeBuffer->track_pid->push_back(track->GetDefinition()->GetPDGEncoding());
 
-  
+  //G4ThreeVector mom = track->GetMomentum();
+  //G4cout << "Momentum: " <<  mom[0] << " " << mom[1] << " " << mom[2] << G4endl;
+
+
    
 }
 
 void MyExampleTrackingAction::PostUserTrackingAction(const G4Track * track){  
+
   if(track->GetCreatorProcess()){//Skips primary particles which have no creator process
 
     G4String processName = track->GetCreatorProcess()->GetProcessName();
@@ -40,4 +44,5 @@ void MyExampleTrackingAction::PostUserTrackingAction(const G4Track * track){
 
     }
   }
+
 }

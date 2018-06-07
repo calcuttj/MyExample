@@ -19,6 +19,7 @@ MyExampleActionInitialization::MyExampleActionInitialization() : G4VUserActionIn
   tree->Branch("secondaryProductIDs",  &MyTreeBuffer->secondaryProductIDs);
   tree->Branch("secondaryProductPIDs", &MyTreeBuffer->secondaryProductPIDs);
   tree->Branch("secondaryProcess",     &MyTreeBuffer->secondaryProcess);
+  
   tree->Branch("interactionMode",      &MyTreeBuffer->interactionMode);
 
   tree->Branch("nPi0",     &MyTreeBuffer->nPi0);    
@@ -43,6 +44,8 @@ MyExampleActionInitialization::MyExampleActionInitialization() : G4VUserActionIn
   tree->Branch("zs", &MyTreeBuffer->zs);
 
   tree->Branch("postProcess", &MyTreeBuffer->postStepProcess);
+  tree->Branch("preMat", &MyTreeBuffer->preStepMat);
+  tree->Branch("postMat", &MyTreeBuffer->postStepMat);
   G4cout << "Made Branches" << G4endl;
 }
 
@@ -52,7 +55,8 @@ MyExampleActionInitialization::~MyExampleActionInitialization(){
 }
 
 void MyExampleActionInitialization::Build() const{
-  SetUserAction(new MyExamplePrimaryGeneratorAction);
+  
+  SetUserAction(new MyExamplePrimaryGeneratorAction());
   //Pass trees and branches to these
   std::cout << "Passing tree at " << tree << std::endl;
   SetUserAction(new MyExampleEventAction(tree, MyTreeBuffer));//Will have to fill tree in this
