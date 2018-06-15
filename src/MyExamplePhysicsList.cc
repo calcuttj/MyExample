@@ -6,7 +6,7 @@
 #include "G4HadronPhysicsQGSP_BERT.hh"
 
 MyExamplePhysicsList::MyExamplePhysicsList() : G4VModularPhysicsList(){
-  SetVerboseLevel(1);
+  SetVerboseLevel(5);
 
   RegisterPhysics( new G4DecayPhysics );
   RegisterPhysics( new G4RadioactiveDecayPhysics );
