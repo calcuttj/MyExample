@@ -21,6 +21,7 @@ MyExampleActionInitialization::MyExampleActionInitialization() : G4VUserActionIn
   tree->Branch("secondaryProcess",     &MyTreeBuffer->secondaryProcess);
   
   tree->Branch("interactionMode",      &MyTreeBuffer->interactionMode);
+  tree->Branch("interactionModeName",      &MyTreeBuffer->interactionModeName);
 
   tree->Branch("nPi0",     &MyTreeBuffer->nPi0);    
   tree->Branch("nPiPlus",  &MyTreeBuffer->nPiPlus);
@@ -44,6 +45,7 @@ MyExampleActionInitialization::MyExampleActionInitialization() : G4VUserActionIn
   tree->Branch("zs", &MyTreeBuffer->zs);
 
   tree->Branch("postProcess", &MyTreeBuffer->postStepProcess);
+  tree->Branch("preProcess", &MyTreeBuffer->preStepProcess);
   tree->Branch("preMat", &MyTreeBuffer->preStepMat);
   tree->Branch("postMat", &MyTreeBuffer->postStepMat);
   G4cout << "Made Branches" << G4endl;

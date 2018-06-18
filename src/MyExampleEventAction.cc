@@ -23,7 +23,8 @@ void MyExampleEventAction::BeginOfEventAction(const G4Event * event){
   MyTreeBuffer->secondaryProductPIDs->clear();
   MyTreeBuffer->secondaryProcess->clear();
 
-  MyTreeBuffer->interactionMode->clear();
+  MyTreeBuffer->interactionModeName->clear();
+  MyTreeBuffer->interactionMode = 0;
 
   (MyTreeBuffer->nPi0) = 0;   
   (MyTreeBuffer->nPiPlus) = 0;
@@ -45,6 +46,7 @@ void MyExampleEventAction::BeginOfEventAction(const G4Event * event){
   MyTreeBuffer->postStepMat->clear();
 
   MyTreeBuffer->postStepProcess->clear();
+  MyTreeBuffer->preStepProcess->clear();
 }
 
 void MyExampleEventAction::EndOfEventAction(const G4Event * event){
@@ -108,7 +110,8 @@ void MyExampleEventAction::EndOfEventAction(const G4Event * event){
   }
 
   if(*(MyTreeBuffer->secondaryProcess) == "Decay"){
-    *(MyTreeBuffer->interactionMode) = "Decay";
+    *(MyTreeBuffer->interactionModeName) = "Decay";
+    MyTreeBuffer->interactionMode = kDecay;
   }
   else if(*(MyTreeBuffer->secondaryProcess) == "pi+Inelastic"){
 
@@ -116,47 +119,59 @@ void MyExampleEventAction::EndOfEventAction(const G4Event * event){
     if(nPi0 > 0){
       if(nPiPlus > 0 || nPiMinus > 0){
         G4cout << "Pi0 and Pi+/-!!!!!!!!" << G4endl;
-        *(MyTreeBuffer->interactionMode) = "CEX+pic";
+        *(MyTreeBuffer->interactionModeName) = "CEX+pic";
+        MyTreeBuffer->interactionMode = kCEXPiC;
       }
       else if(nPi0 == 1){
-        *(MyTreeBuffer->interactionMode) = "CEX";
+        *(MyTreeBuffer->interactionModeName) = "CEX";
+        MyTreeBuffer->interactionMode = kCEX;
       }
       else if(nPi0 > 1){
-        *(MyTreeBuffer->interactionMode) = "CEXN";
+        *(MyTreeBuffer->interactionModeName) = "CEXN";
+        MyTreeBuffer->interactionMode = kCEXN;
       }      
     }
     else if(nPiPlus > 0){
       if(nPi0 > 0){
         G4cout <<"PiPlus and Pi0!!!!!!!"  << G4endl;
-        *(MyTreeBuffer->interactionMode) = "INEL+Pi0";
+        *(MyTreeBuffer->interactionModeName) = "INEL+Pi0";
+        MyTreeBuffer->interactionMode = kINELPi0;
       }
       else if(nPiMinus > 0){
         G4cout << "PiPlus and PiMinus!!!!!" << G4endl;
-        *(MyTreeBuffer->interactionMode) = "INEL+Pi-";
+        *(MyTreeBuffer->interactionModeName) = "INEL+Pi-";
+        MyTreeBuffer->interactionMode = kINELPiP;
       }
       else if(nPiPlus > 1){
-        *(MyTreeBuffer->interactionMode) = "INEL N";
+        *(MyTreeBuffer->interactionModeName) = "INEL N";
+        MyTreeBuffer->interactionMode = kINELN;
       }
       else{ 
-        *(MyTreeBuffer->interactionMode) = "INEL";
+        *(MyTreeBuffer->interactionModeName) = "INEL";
+        MyTreeBuffer->interactionMode = kINEL;
       }
     }
     else if(nPiMinus > 0){
       if(nPi0 > 0){
-        *(MyTreeBuffer->interactionMode) = "Pi-+Pi0";
+        *(MyTreeBuffer->interactionModeName) = "Pi-+Pi0";
+        MyTreeBuffer->interactionMode = kPiMPi0;
       }
       else if(nPiPlus > 0){
-        *(MyTreeBuffer->interactionMode) = "Pi-+Pi+";
+        *(MyTreeBuffer->interactionModeName) = "Pi-+Pi+";
+        MyTreeBuffer->interactionMode = kPiMPiP;
       }
       else if(nPiMinus > 1){
-       *(MyTreeBuffer->interactionMode) = "DCEX N";
+        *(MyTreeBuffer->interactionModeName) = "DCEX N";
+        MyTreeBuffer->interactionMode = kDCEXN;
       }
       else{
-       *(MyTreeBuffer->interactionMode) = "DCEX";
+        *(MyTreeBuffer->interactionModeName) = "DCEX";
+        MyTreeBuffer->interactionMode = kDCEX;
       }
     }
     else if(nPi0 == 0 && nPiPlus == 0 && nPiMinus == 0){
-      *(MyTreeBuffer->interactionMode) = "ABS";
+      *(MyTreeBuffer->interactionModeName) = "ABS";
+      MyTreeBuffer->interactionMode = kABS;
     }    
 
   }

@@ -36,11 +36,20 @@ void MyExampleSteppingAction::UserSteppingAction(const G4Step * step){
   MyTreeBuffer->ys->push_back(prestep->GetPosition().getY() / cm);
   MyTreeBuffer->zs->push_back(prestep->GetPosition().getZ() / cm);
 
+  auto prePro = prestep->GetProcessDefinedStep();
+  if(prePro){
+    auto preProName = prePro->GetProcessName(); 
+    MyTreeBuffer->preStepProcess->push_back(preProName); 
+  }
+  else{
+    MyTreeBuffer->preStepProcess->push_back("NULL"); 
+  }
+
   auto postPro = poststep->GetProcessDefinedStep(); 
   auto postProName = postPro->GetProcessName();
   MyTreeBuffer->postStepProcess->push_back(postProName); 
 
-  auto preMat = prestep->GetMaterial();
+/*  auto preMat = prestep->GetMaterial();
   if(preMat){
     MyTreeBuffer->preStepMat->push_back(preMat->GetName());
   }
@@ -54,5 +63,5 @@ void MyExampleSteppingAction::UserSteppingAction(const G4Step * step){
   }
   else{
     MyTreeBuffer->postStepMat->push_back("NoMat");
-  } 
+  } */
 }

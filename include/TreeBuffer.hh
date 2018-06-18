@@ -4,6 +4,26 @@
 #include <vector>
 #include <string>
 
+enum theModes{
+  kNone,
+  kABS,
+  kCEX,
+  kDCEX,
+  kINEL,
+  kDecay,
+
+  kCEXPiC,
+  kCEXN,
+
+  kPiMPi0,
+  kPiMPiP,
+  kDCEXN,
+
+  kINELPi0,
+  kINELPiP,
+  kINELN
+};
+
 struct TreeBuffer{
   std::vector<int> * tid;
   std::vector<int> * pid;
@@ -15,6 +35,7 @@ struct TreeBuffer{
   std::vector<int> * parid;
 
   std::vector<std::string> * postStepProcess;
+  std::vector<std::string> * preStepProcess;
   std::vector<std::string> * preStepMat;
   std::vector<std::string> * postStepMat;
   std::vector<double> * ekin;
@@ -29,7 +50,8 @@ struct TreeBuffer{
   std::vector<int> * secondaryProductPIDs;
   std::string * secondaryProcess;
   
-  std::string * interactionMode;
+  std::string * interactionModeName;
+  int interactionMode;
   int nPi0, nPiPlus, nPiMinus, nProton, nNeutron, nNuclear, nGamma;
 
 };
