@@ -49,6 +49,24 @@ void MyExampleSteppingAction::UserSteppingAction(const G4Step * step){
   auto postProName = postPro->GetProcessName();
   MyTreeBuffer->postStepProcess->push_back(postProName); 
 
+  int nProcs = step->postStepProcNames->size();
+  std::cout << step->postStepProcNames->size() << " Names" << std::endl;
+  std::cout << step->postStepProcMFPs->size() << " MFPs" << std::endl;
+  std::cout << step->postStepProcIntLens->size() << " IntLens" << std::endl;
+
+  std::cout << std::setw(15) << "Name" <<std::setw(10) << "MFP"  <<std::setw(10) << "IntLen" <<std::endl;
+
+  for(int ip = 0; ip < nProcs; ++ip){
+    std::cout << std::setw(15) << step->postStepProcNames->at(ip)  
+              << std::setw(10) << step->postStepProcMFPs->at(ip) 
+              << std::setw(10) << step->postStepProcIntLens->at(ip) << std::endl;
+  }
+  
+
+/*  for(int i = 0; i < step->postStepProcList->size(); ++i){    
+    std::cout << step->postStepProcList->at(i).name << std::endl;
+  }*/
+
 /*  auto preMat = prestep->GetMaterial();
   if(preMat){
     MyTreeBuffer->preStepMat->push_back(preMat->GetName());
