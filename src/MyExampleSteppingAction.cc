@@ -49,19 +49,26 @@ void MyExampleSteppingAction::UserSteppingAction(const G4Step * step){
   auto postProName = postPro->GetProcessName();
   MyTreeBuffer->postStepProcess->push_back(postProName); 
 
-  int nProcs = step->postStepProcNames->size();
-  std::cout << step->postStepProcNames->size() << " Names" << std::endl;
-  std::cout << step->postStepProcMFPs->size() << " MFPs" << std::endl;
-  std::cout << step->postStepProcIntLens->size() << " IntLens" << std::endl;
+  int nPostProcs = step->postStepProcNames->size();
+  std::cout << "PostStep Procs" << std::endl;
+  std::cout << std::setw(15) << "Name" <<std::setw(15) << "MFP"  <<std::setw(15) << "IntLen" <<std::endl;
 
-  std::cout << std::setw(15) << "Name" <<std::setw(10) << "MFP"  <<std::setw(10) << "IntLen" <<std::endl;
-
-  for(int ip = 0; ip < nProcs; ++ip){
+  for(int ip = 0; ip < nPostProcs; ++ip){
     std::cout << std::setw(15) << step->postStepProcNames->at(ip)  
               << std::setw(15) << step->postStepProcMFPs->at(ip) 
               << std::setw(15) << step->postStepProcIntLens->at(ip) << std::endl;
   }
-  std::cout << "STEP LENGTH: " << step->GetStepLength << std::endl;
+
+  int nAlongProcs = step->alongStepProcNames->size();
+  std::cout << "AlongStep Procs" << std::endl;
+  std::cout << std::setw(15) << "Name" <<std::setw(15) << "MFP"  <<std::setw(15) << "IntLen" <<std::endl;
+
+  for(int ip = 0; ip < nAlongProcs; ++ip){
+    std::cout << std::setw(15) << step->alongStepProcNames->at(ip)  
+              << std::setw(15) << step->alongStepProcMFPs->at(ip) 
+              << std::setw(15) << step->alongStepProcIntLens->at(ip) << std::endl;
+  }
+  std::cout << "STEP LENGTH: " << step->GetStepLength() << std::endl;
   
 
 /*  for(int i = 0; i < step->postStepProcList->size(); ++i){    
