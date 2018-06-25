@@ -1,12 +1,13 @@
 #include "MyExampleEventAction.hh"
 
-MyExampleEventAction::MyExampleEventAction(TTree * tree, TreeBuffer * inputTreeBuffer) : G4UserEventAction(){
+MyExampleEventAction::MyExampleEventAction(TTree * tree, TreeBuffer * inputTreeBuffer, StepTreeBuffer * inputStepTreeBuffer) : G4UserEventAction(){
 
   //Pass the pointers to this class;
   tree_copy = tree;  
   std::cout << "Got tree at " << tree << std::endl;
 
   MyTreeBuffer = inputTreeBuffer;
+  MyStepTreeBuffer = inputStepTreeBuffer;
 }
 
 MyExampleEventAction::~MyExampleEventAction(){ 
@@ -48,8 +49,7 @@ void MyExampleEventAction::BeginOfEventAction(const G4Event * event){
   MyTreeBuffer->postStepProcess->clear();
   MyTreeBuffer->preStepProcess->clear();
 
-  MyTreeBuffer->postProcNameToMFP.clear();
-  MyTreeBuffer->alongProcNameToMFP.clear();
+  MyStepTreeBuffer->eventNum = event->GetEventID();
 }
 
 void MyExampleEventAction::EndOfEventAction(const G4Event * event){

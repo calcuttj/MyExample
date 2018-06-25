@@ -4,9 +4,10 @@
 #include "G4VProcess.hh"
 #include "G4String.hh"
 
-MyExampleTrackingAction::MyExampleTrackingAction(TreeBuffer * inputTreeBuffer) : G4UserTrackingAction(){
+MyExampleTrackingAction::MyExampleTrackingAction(TreeBuffer * inputTreeBuffer, StepTreeBuffer * inputStepTreeBuffer) : G4UserTrackingAction(){
 
   MyTreeBuffer = inputTreeBuffer;
+  MyStepTreeBuffer = inputStepTreeBuffer;
 
   G4cout << "Initializing tracking action" << G4endl;
 
@@ -23,7 +24,9 @@ void MyExampleTrackingAction::PreUserTrackingAction(const G4Track * track){
   //G4ThreeVector mom = track->GetMomentum();
   //G4cout << "Momentum: " <<  mom[0] << " " << mom[1] << " " << mom[2] << G4endl;
 
-
+  MyStepTreeBuffer->parID = parID; 
+  MyStepTreeBuffer->trackID = track->GetTrackID();
+  MyStepTreeBuffer->PID = track->GetDefinition()->GetPDGEncoding();
    
 }
 

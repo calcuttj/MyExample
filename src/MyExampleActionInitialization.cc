@@ -3,13 +3,16 @@
 #include "MyExampleTrackingAction.hh"
 #include "MyExampleSteppingAction.hh"
 #include "MyExampleEventAction.hh"
-
-
+#include "TROOT.h"
 
 MyExampleActionInitialization::MyExampleActionInitialization() : G4VUserActionInitialization(){
+
   MyTreeBuffer = new TreeBuffer();
+  MyStepTreeBuffer = new StepTreeBuffer();
+
   fout = new TFile("try.root", "RECREATE");
   tree = new TTree("tree","");
+  step = new TTree("step","");
   G4cout << "Making Branches" << G4endl;
   tree->Branch("pid", &MyTreeBuffer->pid);
   tree->Branch("tid", &MyTreeBuffer->tid);
@@ -48,11 +51,28 @@ MyExampleActionInitialization::MyExampleActionInitialization() : G4VUserActionIn
   tree->Branch("preProcess", &MyTreeBuffer->preStepProcess);
   tree->Branch("preMat", &MyTreeBuffer->preStepMat);
   tree->Branch("postMat", &MyTreeBuffer->postStepMat);
-  G4cout << "Made Branches" << G4endl;
+
+  G4cout << "Made tree Branches" << G4endl;
+
+  step->Branch("trackID", &MyStepTreeBuffer->trackID);
+  step->Branch("eventNum", &MyStepTreeBuffer->eventNum);
+  step->Branch("PID", &MyStepTreeBuffer->PID);
+  step->Branch("parID", &MyStepTreeBuffer->parID);
+  step->Branch("stepChosenProc", &MyStepTreeBuffer->stepChosenProc);
+  step->Branch("stepActivePostProcNames", &MyStepTreeBuffer->stepActivePostProcNames);
+  step->Branch("stepActiveAlongProcNames", &MyStepTreeBuffer->stepActiveAlongProcNames);
+  step->Branch("stepActivePostProcMFPs", &MyStepTreeBuffer->stepActivePostProcMFPs);
+  step->Branch("stepActiveAlongProcMFPs", &MyStepTreeBuffer->stepActiveAlongProcMFPs);
+  step->Branch("px", &MyStepTreeBuffer->px);
+  step->Branch("py", &MyStepTreeBuffer->py);
+  step->Branch("pz", &MyStepTreeBuffer->pz);
+  step->Branch("ekin", &MyStepTreeBuffer->ekin);
+  G4cout << "Made step Branches" << G4endl;
 }
 
 MyExampleActionInitialization::~MyExampleActionInitialization(){
   tree->Write();
+  step->Write();
   fout->Close();
 }
 
@@ -61,7 +81,7 @@ void MyExampleActionInitialization::Build() const{
   SetUserAction(new MyExamplePrimaryGeneratorAction());
   //Pass trees and branches to these
   std::cout << "Passing tree at " << tree << std::endl;
-  SetUserAction(new MyExampleEventAction(tree, MyTreeBuffer));//Will have to fill tree in this
-  SetUserAction(new MyExampleSteppingAction(MyTreeBuffer));
-  SetUserAction(new MyExampleTrackingAction(MyTreeBuffer));
+  SetUserAction(new MyExampleEventAction(tree, MyTreeBuffer, MyStepTreeBuffer));//Will have to fill tree in this
+  SetUserAction(new MyExampleSteppingAction(MyTreeBuffer, MyStepTreeBuffer, step));
+  SetUserAction(new MyExampleTrackingAction(MyTreeBuffer, MyStepTreeBuffer));
 }

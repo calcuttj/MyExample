@@ -56,8 +56,8 @@ struct TreeBuffer{
   int nPi0, nPiPlus, nPiMinus, nProton, nNeutron, nNuclear, nGamma;
 
 
-  std::map<std::string, double> postProcNameToMFP;
-  std::map<std::string, double> alongProcNameToMFP;
+  std::vector< std::string > * stepChosenProc;
+
 };
 
 #endif

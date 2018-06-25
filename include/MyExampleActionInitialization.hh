@@ -3,6 +3,7 @@
 
 #include "G4VUserActionInitialization.hh"
 #include "TreeBuffer.hh"
+#include "StepTreeBuffer.hh"
 
 #include "TTree.h"
 #include "TFile.h"
@@ -19,7 +20,9 @@ class MyExampleActionInitialization : public G4VUserActionInitialization{
 
     TFile * fout;
     TTree * tree;
+    TTree * step;
 
     TreeBuffer * MyTreeBuffer;
+    StepTreeBuffer * MyStepTreeBuffer;
 };
 #endif

@@ -5,6 +5,7 @@
 #include "G4EventManager.hh"
 #include "G4Event.hh"
 #include "TreeBuffer.hh"
+#include "StepTreeBuffer.hh"
 
 #include "TTree.h"
 #include <vector>
@@ -12,7 +13,7 @@
 class MyExampleEventAction : public G4UserEventAction{
 
   public:
-    MyExampleEventAction(TTree *, TreeBuffer * );
+    MyExampleEventAction(TTree *, TreeBuffer *, StepTreeBuffer *);
     virtual ~MyExampleEventAction();
 
     virtual void BeginOfEventAction(const G4Event *);
@@ -23,6 +24,8 @@ class MyExampleEventAction : public G4UserEventAction{
   private: 
     TTree * tree_copy;
     TreeBuffer * MyTreeBuffer;
+    StepTreeBuffer * MyStepTreeBuffer;
+
 };
 
 #endif

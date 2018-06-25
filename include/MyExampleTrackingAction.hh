@@ -3,6 +3,7 @@
 
 #include "G4UserTrackingAction.hh"
 #include "TreeBuffer.hh"
+#include "StepTreeBuffer.hh"
 
 #include <iostream>
 #include <fstream>
@@ -11,13 +12,14 @@
 class MyExampleTrackingAction : public G4UserTrackingAction{
 
   public:
-    MyExampleTrackingAction(TreeBuffer *);
+    MyExampleTrackingAction(TreeBuffer *, StepTreeBuffer *);
     virtual ~MyExampleTrackingAction();
 
     virtual void PreUserTrackingAction(const G4Track *);  
     virtual void PostUserTrackingAction(const G4Track *);  
   private:
     TreeBuffer * MyTreeBuffer;
+    StepTreeBuffer * MyStepTreeBuffer;
 };
 
 #endif
