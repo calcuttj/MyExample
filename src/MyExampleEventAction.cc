@@ -47,6 +47,9 @@ void MyExampleEventAction::BeginOfEventAction(const G4Event * event){
 
   MyTreeBuffer->postStepProcess->clear();
   MyTreeBuffer->preStepProcess->clear();
+
+  MyTreeBuffer->postProcNameToMFP.clear();
+  MyTreeBuffer->alongProcNameToMFP.clear();
 }
 
 void MyExampleEventAction::EndOfEventAction(const G4Event * event){

@@ -2,6 +2,7 @@
 #define TreeBuffer_h 1
 
 #include <vector>
+#include <map>
 #include <string>
 
 enum theModes{
@@ -54,6 +55,9 @@ struct TreeBuffer{
   int interactionMode;
   int nPi0, nPiPlus, nPiMinus, nProton, nNeutron, nNuclear, nGamma;
 
+
+  std::map<std::string, double> postProcNameToMFP;
+  std::map<std::string, double> alongProcNameToMFP;
 };
 
 #endif

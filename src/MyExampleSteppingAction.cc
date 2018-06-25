@@ -57,6 +57,7 @@ void MyExampleSteppingAction::UserSteppingAction(const G4Step * step){
     std::cout << std::setw(15) << step->postStepProcNames->at(ip)  
               << std::setw(15) << step->postStepProcMFPs->at(ip) 
               << std::setw(15) << step->postStepProcIntLens->at(ip) << std::endl;
+    MyTreeBuffer->postProcNameToMFP[step->postStepProcNames->at(ip)] = step->postStepProcMFPs->at(ip);
   }
 
   int nAlongProcs = step->alongStepProcNames->size();
@@ -67,27 +68,9 @@ void MyExampleSteppingAction::UserSteppingAction(const G4Step * step){
     std::cout << std::setw(15) << step->alongStepProcNames->at(ip)  
               << std::setw(15) << step->alongStepProcMFPs->at(ip) 
               << std::setw(15) << step->alongStepProcIntLens->at(ip) << std::endl;
+    MyTreeBuffer->alongProcNameToMFP[step->alongStepProcNames->at(ip)] = step->alongStepProcMFPs->at(ip);
   }
   std::cout << "STEP LENGTH: " << step->GetStepLength() << std::endl;
   
 
-/*  for(int i = 0; i < step->postStepProcList->size(); ++i){    
-    std::cout << step->postStepProcList->at(i).name << std::endl;
-  }*/
-
-/*  auto preMat = prestep->GetMaterial();
-  if(preMat){
-    MyTreeBuffer->preStepMat->push_back(preMat->GetName());
-  }
-  else{
-    MyTreeBuffer->preStepMat->push_back("NoMat");
-  }
-
-  auto postMat = poststep->GetMaterial();
-  if(postMat){
-    MyTreeBuffer->postStepMat->push_back(postMat->GetName());
-  }
-  else{
-    MyTreeBuffer->postStepMat->push_back("NoMat");
-  } */
 }
