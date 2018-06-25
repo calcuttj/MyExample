@@ -4,7 +4,7 @@
 # Setup the project
 cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 project(MyExample)
-
+add_subdirectory(G4Reweight)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -31,9 +31,9 @@ find_package(ROOT REQUIRED COMPONENTS RIO Net)
 #
 include(${Geant4_USE_FILE})
 if(ROOT_FOUND)
-  include_directories(${ROOT_INCLUDE_DIRS} ${PROJECT_SOURCE_DIR}/include)
+  include_directories(${ROOT_INCLUDE_DIRS} ${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/G4Reweight/include)
 else()
-  include_directories(${PROJECT_SOURCE_DIR}/include)
+  include_directories(${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/G4Reweight/include)
 endif()
 
 
@@ -44,14 +44,15 @@ endif()
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
+
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
 #
 add_executable(MyExample MyExample.cc ${sources} ${headers})
 if(ROOT_FOUND)
-  target_link_libraries(MyExample ${Geant4_LIBRARIES} ${ROOT_LIBRARIES})
+  target_link_libraries(MyExample ${Geant4_LIBRARIES} ${ROOT_LIBRARIES} G4Reweight)
 else()
-  target_link_libraries(MyExample ${Geant4_LIBRARIES})
+  target_link_libraries(MyExample ${Geant4_LIBRARIES} G4Reweight)
 endif()
 #ROOT HERE?
 
