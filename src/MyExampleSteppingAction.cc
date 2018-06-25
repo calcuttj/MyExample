@@ -58,8 +58,8 @@ void MyExampleSteppingAction::UserSteppingAction(const G4Step * step){
 
   for(int ip = 0; ip < nProcs; ++ip){
     std::cout << std::setw(15) << step->postStepProcNames->at(ip)  
-              << std::setw(10) << step->postStepProcMFPs->at(ip) 
-              << std::setw(10) << step->postStepProcIntLens->at(ip) << std::endl;
+              << std::setw(15) << step->postStepProcMFPs->at(ip) 
+              << std::setw(15) << step->postStepProcIntLens->at(ip) << std::endl;
   }
   
 
