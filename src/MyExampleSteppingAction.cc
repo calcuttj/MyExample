@@ -61,6 +61,7 @@ void MyExampleSteppingAction::UserSteppingAction(const G4Step * step){
               << std::setw(15) << step->postStepProcMFPs->at(ip) 
               << std::setw(15) << step->postStepProcIntLens->at(ip) << std::endl;
   }
+  std::cout << "STEP LENGTH: " << step->GetStepLength << std::endl;
   
 
 /*  for(int i = 0; i < step->postStepProcList->size(); ++i){    
