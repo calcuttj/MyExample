@@ -4,13 +4,14 @@
 #include "G4VProcess.hh"
 #include "G4String.hh"
 
-MyExampleTrackingAction::MyExampleTrackingAction(TreeBuffer * inputTreeBuffer, StepTreeBuffer * inputStepTreeBuffer) : G4UserTrackingAction(){
+MyExampleTrackingAction::MyExampleTrackingAction(TreeBuffer * inputTreeBuffer, StepTreeBuffer * inputStepTreeBuffer, TrackTreeBuffer * inputTrackTreeBuffer, TTree * track) : G4UserTrackingAction(){
 
   MyTreeBuffer = inputTreeBuffer;
   MyStepTreeBuffer = inputStepTreeBuffer;
+  MyTrackTreeBuffer = inputTrackTreeBuffer; 
 
   G4cout << "Initializing tracking action" << G4endl;
-
+  track_tree_copy = track;
 }
 
 MyExampleTrackingAction::~MyExampleTrackingAction(){
@@ -28,6 +29,7 @@ void MyExampleTrackingAction::PreUserTrackingAction(const G4Track * track){
   MyStepTreeBuffer->trackID = track->GetTrackID();
   MyStepTreeBuffer->PID = track->GetDefinition()->GetPDGEncoding();
    
+  MyTrackTreeBuffer->steps->clear();
 }
 
 void MyExampleTrackingAction::PostUserTrackingAction(const G4Track * track){  
@@ -47,5 +49,7 @@ void MyExampleTrackingAction::PostUserTrackingAction(const G4Track * track){
 
     }
   }
+
+  track_tree_copy->Fill();
 
 }

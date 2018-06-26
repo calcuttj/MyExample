@@ -1,6 +1,6 @@
 #include "MyExampleEventAction.hh"
 
-MyExampleEventAction::MyExampleEventAction(TTree * tree, TreeBuffer * inputTreeBuffer, StepTreeBuffer * inputStepTreeBuffer) : G4UserEventAction(){
+MyExampleEventAction::MyExampleEventAction(TTree * tree, TreeBuffer * inputTreeBuffer, StepTreeBuffer * inputStepTreeBuffer, TrackTreeBuffer * inputTrackTreeBuffer) : G4UserEventAction(){
 
   //Pass the pointers to this class;
   tree_copy = tree;  

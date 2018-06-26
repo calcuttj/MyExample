@@ -9,10 +9,13 @@ MyExampleActionInitialization::MyExampleActionInitialization() : G4VUserActionIn
 
   MyTreeBuffer = new TreeBuffer();
   MyStepTreeBuffer = new StepTreeBuffer();
+  MyTrackTreeBuffer = new TrackTreeBuffer();
 
   fout = new TFile("try.root", "RECREATE");
   tree = new TTree("tree","");
   step = new TTree("step","");
+  track = new TTree("track","");
+
   G4cout << "Making Branches" << G4endl;
   tree->Branch("pid", &MyTreeBuffer->pid);
   tree->Branch("tid", &MyTreeBuffer->tid);
@@ -68,11 +71,16 @@ MyExampleActionInitialization::MyExampleActionInitialization() : G4VUserActionIn
   step->Branch("pz", &MyStepTreeBuffer->pz);
   step->Branch("ekin", &MyStepTreeBuffer->ekin);
   G4cout << "Made step Branches" << G4endl;
+
+  track->Branch("trackID", &MyTrackTreeBuffer->trackID);
+  track->Branch("steps", &MyTrackTreeBuffer->steps);
+  G4cout << "Made track Branches" << G4endl;
 }
 
 MyExampleActionInitialization::~MyExampleActionInitialization(){
   tree->Write();
   step->Write();
+  track->Write();
   fout->Close();
 }
 
@@ -81,7 +89,7 @@ void MyExampleActionInitialization::Build() const{
   SetUserAction(new MyExamplePrimaryGeneratorAction());
   //Pass trees and branches to these
   std::cout << "Passing tree at " << tree << std::endl;
-  SetUserAction(new MyExampleEventAction(tree, MyTreeBuffer, MyStepTreeBuffer));//Will have to fill tree in this
+  SetUserAction(new MyExampleEventAction(tree, MyTreeBuffer, MyStepTreeBuffer, MyTrackTreeBuffer));//Will have to fill tree in this
   SetUserAction(new MyExampleSteppingAction(MyTreeBuffer, MyStepTreeBuffer, step));
-  SetUserAction(new MyExampleTrackingAction(MyTreeBuffer, MyStepTreeBuffer));
+  SetUserAction(new MyExampleTrackingAction(MyTreeBuffer, MyStepTreeBuffer, MyTrackTreeBuffer, track));
 }
